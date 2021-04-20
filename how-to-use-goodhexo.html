@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="这是一篇针对特定方案完工后的使用简介，其他更多更详细的细节教程请借助搜索引擎完成。
+基于此方案，我们只需要维护 `MarkDown源文件仓库` ，每次提交源文件仓库后， 将自动触发 `Action` 完成渲染及部署工作。 ">
+  <meta name="author" content="凹凸曼达人">
+  <meta name="keywords" content="一网盟,yiwangmeng,GoodHexo,hexo便携版">
+  
+  <title>GoodHexo仓库版使用简介 - 我的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yiwangmeng.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="我的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>一网盟</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="GoodHexo仓库版使用简介">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-20 13:47" pubdate>
+        2021年4月20日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">GoodHexo仓库版使用简介</h1>
+            
+            <div class="markdown-body">
+              <p><img src="../images/GoodHexo.png" srcset="/img/loading.gif" lazyload><br>这是一篇针对特定方案完工后的使用简介，其他更多更详细的细节教程请借助搜索引擎完成。</p>
+<p>基于此方案，我们只需要维护 <code>MarkDown源文件仓库</code> ，每次提交源文件仓库后， 将自动触发 <code>Action</code> 完成渲染及部署工作。</p>
+<h1 id="适用方案"><a href="#适用方案" class="headerlink" title="适用方案"></a>适用方案</h1><p>MarkDown源文件仓库 → <code>Action</code> → <code>GitHub page</code> / 云服务器</p>
+<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><h2 id="1-克隆仓库到本地"><a href="#1-克隆仓库到本地" class="headerlink" title="1. 克隆仓库到本地"></a>1. 克隆仓库到本地</h2><p>用GUI工具或者使用以下命令将 <code>MarkDown源文件仓库</code>  克隆到本地：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">远程仓库地址 本地存放文件夹 --recursive</span><br></code></pre></td></tr></table></figure>
+<p>其中 <code>本地存放文件夹</code> 根据个人实际情况及喜好确定，比如 <code>D:\blogMarkDown</code> ， <code>--recursive</code> 参数会将包含的 <code>Git submodule 子模块</code> 一并克隆，本来就没有子模块管理的可以省略该参数。</p>
+<h2 id="2-内容增-删-改"><a href="#2-内容增-删-改" class="headerlink" title="2. 内容增/删/改"></a>2. 内容增/删/改</h2><p>如果本地已经安装hexo，hugo等环境，那么使用对应的命令即可创建新文章，页面等。</p>
+<p>如果本地不需要或者未安装这种环境，其实我们只需要复制一篇现成的文档，然后用编辑器修改即可，无非就是对应的 <code>Front-matter</code> 格式要保留，下面是个示例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">&#x27;这是个Hexo文章标题示例&#x27;</span>  <span class="hljs-comment">#文章标题，新建文章的时候填的会自动写到这里</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2018-1</span><span class="hljs-number">-12</span> <span class="hljs-number">17</span><span class="hljs-string">:19:27</span>  <span class="hljs-comment">#文章创建时间</span><br><span class="hljs-attr">categories:</span> <span class="hljs-string">搞软件</span> <span class="hljs-comment">#分类，也可以如下一行那种换行后写分类</span><br><span class="hljs-attr">tags:</span>  <span class="hljs-comment">#标签</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">晒酷软</span>  <span class="hljs-comment">#这是个标签</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">做网站</span>  <span class="hljs-comment">#这是另一个标签</span><br><span class="hljs-attr">toc:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment">#是否显示目录，false不显示，true显示，需要主题支持</span><br><span class="hljs-attr">top:</span>  <span class="hljs-comment">#填数字，值越大的文章在首页就越置顶，本包已集成</span><br><span class="hljs-attr">comments:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment">#是否允许评论，需要主题支持</span><br><span class="hljs-attr">keywords:</span> <span class="hljs-string">&#x27;&#x27;</span>    <span class="hljs-comment">#文章关键词，需要主题支持</span><br><span class="hljs-attr">description:</span>  <span class="hljs-string">&#x27;文章摘要，可以是一大段，</span><br><span class="hljs-string">可以换行，用英文引号括起来&#x27;</span>  <span class="hljs-comment">#不填则根据主题设计截取对应字数</span><br><span class="hljs-meta">---</span><br><span class="hljs-string">上面部分是规定的头部信息，这行开始就是文章内容了...</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：每一个参数的 : 或者 - 后，都需要至少留一个空格，如果不填值就无所谓，或者将参数行删除都行，就是不能不留空格直接写，否则会报错。</p>
+</blockquote>
+<p>编辑器推荐用 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/"><code>vscode</code></a> 之类，切忌用Windows系统自带的记事本。举个栗子：<br><img src="https://cdn.jsdelivr.net/gh/828767/static/images/hexo-edit.gif" srcset="/img/loading.gif" lazyload alt="hexo文章撰写示例"></p>
+<h2 id="3-提交到线上仓库"><a href="#3-提交到线上仓库" class="headerlink" title="3. 提交到线上仓库"></a>3. 提交到线上仓库</h2><p>内容编辑完了，那就可以提交到线上仓库触发 <code>Action</code> 了，根据既定的 <code>Action</code> 规则，最终应该会完成渲染发布到指定的仓库或者服务器.</p>
+<p>提交内容到仓库可以借助GUI工具，vscode 或者 github desktop 之类工具就没什么好说的了，也可以使用下方的命令：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">git <span class="hljs-keyword">add</span> <span class="hljs-comment">--all</span><br>git <span class="hljs-keyword">commit</span> -m &quot;commit message&quot;<br>git push<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-查看结果"><a href="#4-查看结果" class="headerlink" title="4. 查看结果"></a>4. 查看结果</h2><p>提交后要不了几分钟，等服务器刷新缓存，就能看到最终的 <code>Action</code> 结果了，对应的 <code>GitHub page</code> 仓库或者服务器上会有内容提交， <code>Action</code> 任务也有对应的详细运行日志，可自行到仓库中查看。</p>
+<p>如果渲染成功，那对外的 <code>GitHub page</code> 网站上应该就有你更新后的内容了。</p>
+<h1 id="知识扩展"><a href="#知识扩展" class="headerlink" title="知识扩展"></a>知识扩展</h1><h2 id="配置密钥"><a href="#配置密钥" class="headerlink" title="配置密钥"></a>配置密钥</h2><h3 id="生成密钥对"><a href="#生成密钥对" class="headerlink" title="生成密钥对"></a>生成密钥对</h3><p>有些系统对密钥安全等级是有要求的，默认的 <code>256CRC</code> 算法可能认证不通过，一般都使用 <code>rsa</code> 算法类型：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">ssh-keygen -<span class="hljs-built_in">t</span> rsa -C <span class="hljs-string">&quot;comment&quot;</span><br></code></pre></td></tr></table></figure>
+<p><code>ssh-keygen</code> 会默认保存到 <code>~/.ssh/id_rsa</code> ，然后它会要求你输入两次密钥口令， <code>.pub</code> 文件是你的公钥，另一个则是与之对应的私钥。</p>
+<p>如果你不想在使用密钥时输入口令，将其留空即可。 然而，如果你使用了密码，那么请确保添加了 <code>-o</code>选项，它会以比默认格式更能抗暴力破解的格式保存私钥，但相应的使用的时候记得输密码，一般留空即可。 </p>
+<h3 id="部署密钥"><a href="#部署密钥" class="headerlink" title="部署密钥"></a>部署密钥</h3><p>现在，进行了上述操作的用户需要将各自的公钥发送给任意一个服务器管理员 （假设服务器正在使用基于公钥的 SSH 验证设置）。 他们所要做的就是复制各自的 <code>.pub</code> 文件内容，添加到 Git 的发布key或者系统的 <code>~/.ssh/authorized_keys</code> ，一行一个，或者直接通过下方命令完成部署：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">ssh-<span class="hljs-keyword">copy</span>-id -i ~<span class="hljs-regexp">/.ssh/i</span>d_rsa.pub <span class="hljs-string">&#x27;用户名@服务器地址&#x27;</span> -p <span class="hljs-string">&#x27;ssh端口&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>验证密钥是否部署成功，可以用下面的命令测试：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">ssh</span> -Tv <span class="hljs-string">&#x27;用户名@服务器地址&#x27;</span> -p <span class="hljs-string">&#x27;ssh端口&#x27;</span>  <span class="hljs-comment">#测试ssh连接是否成功</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>各系统对各种符号的兼容处理可能不同，如配置时百思不得其解可以考虑下比如回车换行兼容问题。</p>
+</blockquote>
+<h2 id="修改及配置主题"><a href="#修改及配置主题" class="headerlink" title="修改及配置主题"></a>修改及配置主题</h2><p>本包把主题配置文件放到了hexo根目录下，所以只需要修改根目录下配置，如启用 <code>matery</code> 主题，则修改 <code>_config.yml</code>中：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Extensions</span><br><span class="hljs-comment">## Plugins: https://hexo.io/plugins/</span><br><span class="hljs-comment">## Themes: https://hexo.io/themes/</span><br><span class="hljs-attr">theme:</span> <span class="hljs-string">matery</span> <span class="hljs-comment">##表示指向 themes/matery 这个目录</span><br></code></pre></td></tr></table></figure>
+<p>然后根据主题说明文档修改 <code>_config.matery.yml</code> 这个就可以了，你也可以将该文件删除去修改主题目录下的  <code>_config.yml</code> ， <code>hexo/_config.matery.yml</code> 这个文件存在就会自动忽略 <code>hexo/themes/matery/_config.yml</code> ，新增其他主题方法以此类推。</p>
+<h2 id="Git-submodule-子模块-更新"><a href="#Git-submodule-子模块-更新" class="headerlink" title="Git submodule 子模块 更新"></a><code>Git submodule 子模块</code> 更新</h2><p>引入 <code>Git submodule 子模块</code> 的作用是方便同步上游项目更新，比如主题作者更新内容了想同步，我们只需要运行下方命令更新：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd themes/xxx #先切换到对应的主题目录下，目录根据实际情况输<br>git submodule update<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>本包已经把主题配置放到了 <code>hexo</code> 配置同级目录，除非配置项发生改变，否则可以大胆更新同步</p>
+</blockquote>
+<h2 id="删除-Git-submodule-子模块"><a href="#删除-Git-submodule-子模块" class="headerlink" title="删除 Git submodule 子模块"></a>删除 <code>Git submodule 子模块</code></h2><p>也许有人觉着 <code>Git submodule 子模块</code> 挺鸡肋的，那也可以删除掉，没有直接的删除命令，需要手动删除配置信息，以删除一个名为 <code>assets</code> 的文件夹为例：</p>
+<ol>
+<li>删除子模块文件夹<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell">git <span class="hljs-built_in">rm</span> -<span class="hljs-literal">-cached</span> themes/assets<br><span class="hljs-built_in">rm</span> <span class="hljs-literal">-rf</span> assets<br></code></pre></td></tr></table></figure></li>
+<li>删除 <code>.gitmodules</code> 文件中相关子模块信息<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">[submodule <span class="hljs-string">&quot;assets&quot;</span>]<br>  path = assets<br>  url = https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/maonx/</span>vimwiki-assets.git<br></code></pre></td></tr></table></figure></li>
+<li>删除 <code>.git/config</code> 中的相关子模块信息<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">[submodule <span class="hljs-string">&quot;assets&quot;</span>]<br>  url = https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/maonx/</span>vimwiki-assets.git<br></code></pre></td></tr></table></figure></li>
+<li>删除 <code>.git</code> 文件夹中的相关子模块文件<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">rm -rf .git<span class="hljs-regexp">/modules/</span>assets<br></code></pre></td></tr></table></figure>
+删除完如果你还需要这个主题，自然是将对应主题文件以普通文件夹的方式整个放到 <code>themes</code> 目录，然后当成主仓库的一部分提交，下次每一个改动都体现在主仓库的更改日志中。</li>
+</ol>
+<h1 id="原文出处"><a href="#原文出处" class="headerlink" title="原文出处"></a>原文出处</h1><p><a href="https://yiwangmeng.com/how-to-use-goodhexo-repo">GoodHexo仓库版使用简介</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/hexo-pug-notes.html">
+                        <span class="hidden-mobile">网页模板 pug 基本语法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  <!-- 网易云音乐插件 -->
+  
+    <div style="position:absolute; bottom:120px; left:auto; width:100%">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="52" src="//music.163.com/outchain/player?type=2&id=1332647902&auto=0&height=32"></iframe>
+    </div>
+  
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

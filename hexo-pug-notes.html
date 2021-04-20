@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="pug原名jade，因版权问题更名为pug，即哈巴狗。与hexo默认模块ejs一样，pug也是一个模板引擎，可用于快速的网站开发，当然也可以用于静态博客网站的设计。本站点现时所用主题manupassant也使用了pug。
+本文针对Hexo中使用pug的情况为例，说明其基本语法。">
+  <meta name="author" content="凹凸曼达人">
+  <meta name="keywords" content="一网盟,yiwangmeng,GoodHexo,hexo便携版">
+  
+  <title>网页模板 pug 基本语法 - 我的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"yiwangmeng.com","root":"/","version":"1.8.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="我的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>一网盟</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="网页模板 pug 基本语法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-10 15:22" pubdate>
+        2020年12月10日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">网页模板 pug 基本语法</h1>
+            
+            <div class="markdown-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>pug 原名 <code>jade</code> ，因版权问题更名为 <code>pug</code> ，即哈巴狗。与 hexo 默认模块 <code>ejs</code> 一样，pug 也是一个模板引擎，可用于快速的网站开发，当然也可以用于静态博客网站的设计。本站点现时所用主题 manupassant 也使用了 <code>pug</code> 。</p>
+<p>本文针对 Hexo 中使用 <code>pug</code> 的情况为例，说明其基本语法。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># common install</span><br>npm install pug<br><br><span class="hljs-comment"># install for hexo blog</span><br>npm install hexo-renderer-pug --save<br></code></pre></td></tr></table></figure>
+
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><p>pug 不同于 html ，前者不需要标签的开和闭，如 html 的 <code>&lt;p&gt;Demo&lt;/p&gt;</code> ，在 pug 使用 <code>p Demo</code> 即可。</p>
+<h2 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h2><p>pug 对空格敏感，有点类似 python 对制表符tab敏感。pug 使用空格作为缩进符，当然用 <code>soft tab</code> 也可行。同一级标签需保证左对齐。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pug">div<br>    p Hello, world!<br>    p Hello, pug.<br></code></pre></td></tr></table></figure>
+
+<p>渲染结果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hellow, world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, pug.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>pug 使用 <code>//-</code> 或 <code>//</code> 对代码进行注释，前者注释内容不出现在渲染后的 html 文件中，后者反之。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- html中不包含此行<br>&#x2F;&#x2F; html中会包含此行<br></code></pre></td></tr></table></figure>
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>pug 将标签属性存放于括号 <code>()</code> 内，多个属性之间以 <code>逗号</code> 或 <code>空格</code> 分隔。此外，对于标签的 <code>id</code> 和 <code>class</code> ，pug 使用 <code>#</code> 紧跟标签 <code>id</code> ,使用 <code>.</code> 紧跟标签 <code>class</code> ，可以同时设置多个 <code>class</code> 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pug">h1#title Test title<br>img#name.class1.class2(src&#x3D;&quot;&#x2F;test.png&quot; alt&#x3D;&quot;test&quot;)<br></code></pre></td></tr></table></figure>
+
+<p>渲染结果如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>Test title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;class1 class2&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/test.png&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="包含"><a href="#包含" class="headerlink" title="包含"></a>包含</h2><p>为了方便代码复用，pug 提供了 <code>include</code> 包含功能，以下代码会将 <code>_partial</code> 目录下的 <code>head.pug</code> 文件内容包含到当前调用的位置。有点 C/C++ 中内联函数的意思。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pug">doctype html<br>html(lang&#x3D;&#39;en&#39;)<br>    include _partial&#x2F;head.pug<br></code></pre></td></tr></table></figure>
+
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>下面是一个简单的 <code>base</code> 模板，通过 <code>block</code> 定义了页面头部 <code>head</code> 和内容 <code>body</code> 。块 <code>block</code> 有点类似 C/C++ 的抽象函数，需要在继承者中完成定义，填充具体内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- base.pug<br>html<br>    head<br>        block title<br>    body<br>        block content<br></code></pre></td></tr></table></figure>
+
+<p>以下文件使用 <code>extends</code> 继承以上模板，通过 <code>block</code> 覆盖或替换原有块 <code>block</code> 。当然，继承者也可以在原有基础上继续扩展。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- index.pug<br>extends base.pug<br><br>block title<br>    title &quot;Test title&quot;<br><br>block content<br>    h1 Hello world!<br>    block article<br></code></pre></td></tr></table></figure>
+
+<h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><p>pug中通过 <code>- var name = value</code> 的形式定义变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs pug">- var intData &#x3D; 100<br>- var boolData &#x3D; false<br>- var stringData &#x3D; &#39;Test&#39;<br>p.int&#x3D; intData<br>p.bool&#x3D; boolData<br>p.stringData&#x3D; stringData<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需注意的是，在引用变量时，需要在引用位置加上=号，否则会默认将变量名当成普通字符串使用。</p>
+</blockquote>
+<p>如果想要将变量与其它字符串常量或是变量连接在一起，就不能用等号了，而是应该用 <code>#&#123;&#125;</code> ，该符号会对大括号内的变量进行求值和转义，最终得到渲染输出的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pug">- var girl &#x3D; &#39;Lily&#39;<br>- var boy &#x3D; &#39;Jack&#39;<br>p #&#123;girl&#125; is so beautiful!<br>p And #&#123;boy&#125; is handsome.<br></code></pre></td></tr></table></figure>
+
+<h2 id="条件结构"><a href="#条件结构" class="headerlink" title="条件结构"></a>条件结构</h2><p>pug 的条件语句与其它语言类似，均是如下这般：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pug">- var A &#x3D; &#123;value: &#39;Test&#39;&#125;<br>- var B &#x3D; true<br>if A.value<br>    p&#x3D; A.value<br>else if B<br>    p&#x3D; B<br>else<br>    p nothing<br></code></pre></td></tr></table></figure>
+
+<h2 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h2><p>pug 中使用 <code>each</code> 和 <code>while</code> 实现循环迭代，<code>each</code> 可以返回当前所在项的索引值，默认从 <code>0</code> 开始计数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- each<br>ol<br>    each item in [&#39;Sun&#39;, &#39;Mon&#39;, &#39;Tus&#39;, &#39;Wen&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;]<br>        li&#x3D; item<br><br>&#x2F;&#x2F;- get index of each<br>- var week &#x3D; [&#39;Sun&#39;, &#39;Mon&#39;, &#39;Tus&#39;, &#39;Wen&#39;, &#39;Thu&#39;, &#39;Fri&#39;, &#39;Sat&#39;]<br>ol<br>    each item, index in week<br>        li&#x3D; index + &#39;:&#39; + item<br></code></pre></td></tr></table></figure>
+<p>渲染成 html 后：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Sun<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Mon<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Tus<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Wen<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Thu<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Fri<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Sat<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ol</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>0:Sun<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>1:Mon<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>2:Tus<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>3:Wen<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>4:Thu<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>5:Fri<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>6:Sat<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ol</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>while</code> 调用方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- while<br>- var day &#x3D; 1<br>ul<br>    while day &lt; 7<br>        li&#x3D; day++<br></code></pre></td></tr></table></figure>
+
+<h2 id="Minix"><a href="#Minix" class="headerlink" title="Minix"></a>Minix</h2><p><code>mixin</code> 名曰混入，类似其它编程语言中的函数，也是为了代码复用，可带参数或不带参数，定义方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pug">mixin menu-item(href, name)<br>    li<br>        span.dot ●<br>        a(href&#x3D;href)&#x3D; name<br></code></pre></td></tr></table></figure>
+<p>其中，<code>menu-item</code> 为调用时所用名称，可认为是函数名，<code>href</code> 及 <code>name</code> 是参数。同上定义变量所说，<code>a(href=href)= name</code> 中第二个 <code>=</code> 是为了将后面的 <code>name</code> 当作参数来处理，而不是当作字符串 <code>&quot;name&quot;</code> 来处理。</p>
+<p>调用 <code>mixin</code> 定义的代码块，需通过 <code>+</code> 号紧跟 <code>mixin</code> 名称及参数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pug">+menu-item(&#39;&#x2F;Archives&#39;,&#39;Archives&#39;)<br>+menu-item(&#39;&#x2F;About&#39;,&#39;About&#39;)<br></code></pre></td></tr></table></figure>
+<p><code>mixin</code> 之所以称为混入，是因为其语法不局限于函数调用，在 <code>mixin</code> 可以使用块 <code>block</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pug">mixin print(post)<br>    if block<br>        block<br>    else<br>        p&#x3D; post<br><br>+print(&quot;no block&quot;)<br>+print(&quot;&quot;)<br>    div.box<br>        p this is the content of block<br></code></pre></td></tr></table></figure>
+<p>对应 html 代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>no block<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>this is the content of block<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><blockquote>
+<p>注意以下 <code>pug</code> 语句中第一行的 <code>.</code> 号。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pug">script(type&#x3D;&#39;text&#x2F;javascript&#39;).<br>    var data &#x3D; &quot;Test&quot;<br>    var enable &#x3D; true<br>    if enable<br>        console.log(data)<br>    else<br>        console.log(&#39;nothing&#39;)<br></code></pre></td></tr></table></figure>
+
+<p>对应的 JS 代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script type=<span class="hljs-string">&#x27;text/javascript&#x27;</span>&gt;<br>    <span class="hljs-keyword">var</span> data = <span class="hljs-string">&quot;Test&quot;</span><br>    <span class="hljs-keyword">var</span> enable = <span class="hljs-literal">true</span><br>    <span class="hljs-keyword">if</span> enable<br>        <span class="hljs-built_in">console</span>.log(data)<br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;nothing&#x27;</span>)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+<p>对于简单脚本，使用 pug 尚可，复杂的还是单独写到 <code>.js</code> 文件中，然后通过 pug 引用方便一些，引用方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pug">script(type&#x3D;&#39;text&#x2F;javascript&#39;, src&#x3D;&#39;&#x2F;path&#x2F;to&#x2F;js&#39;)<br><br>&#x2F;&#x2F;- with hexo function url_for<br>script(type&#x3D;&#39;text&#x2F;javascript&#39;, src&#x3D;url_for(theme.js) + &#39;&#x2F;ready.js&#39;)<br></code></pre></td></tr></table></figure>
+<h1 id="hexo-相关"><a href="#hexo-相关" class="headerlink" title="hexo 相关"></a>hexo 相关</h1><p>在 hexo 主题中使用 pug 时，可以通过使用 hexo 提供的全局变量 <code>config</code> ， <code>theme</code> 来分别调用博客根目录下 <code>_config.yml</code> 文件中的参数以及主题根目录下 <code>_config.yml</code> 文件中的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- blog config<br>p&#x3D; config.description<br><br>&#x2F;&#x2F;- theme config<br>p&#x3D; theme.title<br></code></pre></td></tr></table></figure>
+<p>当然，pug 中可以直接使用 hexo 提供的其它全局变量及辅助函数，使用方法详见 hexo 的文档。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- head.pug<br>head<br>    meta(http-equiv&#x3D;&#39;content-type&#39;, content&#x3D;&#39;text&#x2F;html; charset&#x3D;utf-8&#39;)<br>    meta(content&#x3D;&#39;width&#x3D;device-width, initial-scale&#x3D;1.0, maximum-scale&#x3D;1.0, user-scalable&#x3D;0&#39;, name&#x3D;&#39;viewport&#39;)<br>    meta(content&#x3D;&#39;yes&#39;, name&#x3D;&#39;apple-mobile-web-app-capable&#39;)<br>    meta(content&#x3D;&#39;black-translucent&#39;, name&#x3D;&#39;apple-mobile-web-app-status-bar-style&#39;)<br>    meta(content&#x3D;&#39;telephone&#x3D;no&#39;, name&#x3D;&#39;format-detection&#39;)<br>    meta(name&#x3D;&#39;description&#39;, content&#x3D;config.description)<br>    block title<br>    link(rel&#x3D;&#39;stylesheet&#39;, type&#x3D;&#39;text&#x2F;css&#39;, href&#x3D;url_for(theme.css) + &#39;&#x2F;style.css&#39; + &#39;?v&#x3D;&#39; + theme.version)<br>    link(rel&#x3D;&#39;Shortcut Icon&#39;, type&#x3D;&#39;image&#x2F;x-icon&#39;, href&#x3D;url_for(&#39;favicon.png&#39;))<br>    script(type&#x3D;&#39;text&#x2F;javascript&#39;, src&#x3D;&#39;&#x2F;&#x2F;cdn.bootcss.com&#x2F;jquery&#x2F;3.3.1&#x2F;jquery.min.js&#39;)<br>    block more<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs pug">&#x2F;&#x2F;- base.pug<br>doctype html<br>html(lang&#x3D;&#39;en&#39;)<br>    include _partial&#x2F;head.pug<br>    block more<br>        link(rel&#x3D;&#39;stylesheet&#39;, type&#x3D;&#39;text&#x2F;css&#39;, href&#x3D;url_for(theme.plugins) + &#39;&#x2F;prettify&#x2F;doxy.css&#39;)<br>        script(type&#x3D;&#39;text&#x2F;javascript&#39;, src&#x3D;url_for(theme.js) + &#39;&#x2F;ready.js&#39; + &#39;?v&#x3D;&#39; + theme.version, async)<br>    <br>    &#x2F;&#x2F;- body<br>    body: #container.box<br>        .h-wrapper<br>            include _partial&#x2F;nav-menu.pug<br>        &#x2F;&#x2F; article content<br>        block content<br><br>        include _partial&#x2F;footer.pug<br></code></pre></td></tr></table></figure>
+<p>其中:</p>
+<ul>
+<li><code>theme.*</code> 为主题配置文件 <code>_config.yml</code> 中的参数</li>
+<li><code>url_for</code> 为 hexo 提供的用于查找资源路径的函数</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>pug 提供了 <code>包含</code> ，<code>继承</code> ，<code>Mixin</code> 等多种方式用于代码复用，语法简洁易懂，除了初学时需花费一些时间学习各种标点符号的含义外，其它倒也没有太大困难。</p>
+<p>当然啦，pug 还有许多其它特性，但就我目前使用情况而言，以上这些便已足够。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://pugjs.org/zh-cn/api/getting-started.html">pugjs.org</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">hexo.io/zh-cn/docs/</a></li>
+</ol>
+<h2 id="原文出处"><a href="#原文出处" class="headerlink" title="原文出处"></a>原文出处</h2><ul>
+<li>作者：litreily</li>
+<li>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903668383236104">https://juejin.cn/post/6844903668383236104</a></li>
+<li>来源：掘金</li>
+<li>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E7%BC%96%E7%A8%8B/">学编程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E7%AB%99/">博客建站</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/how-to-use-goodhexo.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GoodHexo仓库版使用简介</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/aardio-notes-02.html">
+                        <span class="hidden-mobile">从零开始学aardio笔记：基础规范</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  <!-- 网易云音乐插件 -->
+  
+    <div style="position:absolute; bottom:120px; left:auto; width:100%">
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="240" height="52" src="//music.163.com/outchain/player?type=2&id=1332647902&auto=0&height=32"></iframe>
+    </div>
+  
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
